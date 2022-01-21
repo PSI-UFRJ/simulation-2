@@ -21,6 +21,8 @@ public class TerrariumController : MonoBehaviour
     [SerializeField] private GameObject layer3;
     [SerializeField] private GameObject layer4;
 
+    [SerializeField] private GameObject lid;
+
     public const int LAYER1 = 1;
     public const int LAYER2 = 2;
     public const int LAYER3 = 3;
@@ -38,10 +40,14 @@ public class TerrariumController : MonoBehaviour
         layers = new List<GameObject>() { layer1, layer2, layer3, layer4 };
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CloseBowl()
     {
-        
+        if(lid == null)
+        {
+            return;
+        }
+
+        lid.GetComponent<Animation>().Play();
     }
 
     public void EnableLayer(int layer)

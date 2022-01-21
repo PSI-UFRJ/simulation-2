@@ -19,9 +19,14 @@ public class PanelController : MonoBehaviour
     private GameObject currPopup;
     [SerializeField] GameObject missingChoicePopup;
 
+    private const int CONSTRUCT = 1;
+    private const int OBSERVE = 2;
+    private int currMode;
+
     void Start()
     {
         currentIndex = 0;
+        currMode = CONSTRUCT;
         terrariumController = GameObject.Find("Terrarium").GetComponent<TerrariumController>();
         panelLayerMapping = new Dictionary<GameObject, int>()
         {
@@ -53,6 +58,24 @@ public class PanelController : MonoBehaviour
 
     }
 
+    public void CloseTerrarium()
+    {
+        if((currentIndex != TerrariumController.LAYER8 - 1) || (materialPanels == null) || (terrariumController == null))
+        {
+            return;
+        }
+
+        terrariumController.CloseBowl();
+        materialPanels[currentIndex].SetActive(false);
+        currMode = OBSERVE;
+        //observingMode.SetActive(true);
+    }
+
+    public void OpenTerrarium()
+    {
+        
+    }
+
     public void CallMissingChoicePopup()
     {
         if (isPopupOn)
@@ -71,7 +94,7 @@ public class PanelController : MonoBehaviour
 
     public void ChangePanelUp()
     {
-        if (materialPanels == null)
+        if ((materialPanels == null) || (currMode != CONSTRUCT))
         {
             return;
         }
@@ -92,7 +115,7 @@ public class PanelController : MonoBehaviour
 
     public void ChangePanelDown()
     {
-        if (materialPanels == null)
+        if ((materialPanels == null) || (currMode != CONSTRUCT))
         {
             return;
         }

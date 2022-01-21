@@ -349,6 +349,7 @@ MonoBehaviour:
   layer2: {fileID: 371928728}
   layer3: {fileID: 729311775}
   layer4: {fileID: 1128622187}
+  lid: {fileID: 1458129286}
 --- !u!23 &58634264
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6024,6 +6025,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 155621693}
+        m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
+        m_MethodName: CloseTerrarium
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1081341158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8969,13 +8982,14 @@ GameObject:
   - component: {fileID: 1458129290}
   - component: {fileID: 1458129289}
   - component: {fileID: 1458129288}
+  - component: {fileID: 1458129291}
   m_Layer: 0
   m_Name: Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1458129287
 Transform:
   m_ObjectHideFlags: 0
@@ -8983,14 +8997,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458129286}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0017987577, y: 3.9638379, z: 0.08394774}
+  m_LocalRotation: {x: -0, y: -0, z: 0.30618852, w: 0.9519709}
+  m_LocalPosition: {x: -0.44, y: 5.44, z: 0.08394773}
   m_LocalScale: {x: 5.176639, y: 0.08402679, z: 5.29232}
   m_Children:
   - {fileID: 199727548}
   m_Father: {fileID: 58634265}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35.289288}
 --- !u!136 &1458129288
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9054,6 +9068,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458129286}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!111 &1458129291
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458129286}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2f73003e677fce24cbf57ada888a3ab1, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2f73003e677fce24cbf57ada888a3ab1, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1504293987
 GameObject:
   m_ObjectHideFlags: 0

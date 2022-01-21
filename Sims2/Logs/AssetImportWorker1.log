@@ -15,11 +15,11 @@ D:/Meus Arquivos/Documents/Study/UFRJ/TCC/Github/simulation-2/simulation-2/Sims2
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-53529
+63103
 Successfully changed project path to: D:/Meus Arquivos/Documents/Study/UFRJ/TCC/Github/simulation-2/simulation-2/Sims2
 D:/Meus Arquivos/Documents/Study/UFRJ/TCC/Github/simulation-2/simulation-2/Sims2
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 2400.12 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 580.61 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.15f2 (6cf78cb77498)
 [Subsystems] Discovering subsystems at path D:/Arquivos de Programas/Unity/2020.3.15f2/Editor/Data/Resources/UnitySubsystems
