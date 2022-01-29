@@ -6,7 +6,7 @@ using System.Linq;
 
 public class PopulationControl : MonoBehaviour
 {
-    public enum PopulationType { Animal, Plant }
+    public enum PopulationType { Animal, Plant } 
 
     public PopulationType type;
 
