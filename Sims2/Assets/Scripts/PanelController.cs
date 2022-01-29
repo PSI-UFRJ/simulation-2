@@ -23,6 +23,11 @@ public class PanelController : MonoBehaviour
     private const int OBSERVE = 2;
     private int currMode;
 
+    [SerializeField] GameObject environmentLight;
+    [SerializeField] GameObject camLight;
+    [SerializeField] GameObject waterDrops;
+    [SerializeField] GameObject waterTrail;
+
     void Start()
     {
         currentIndex = 0;
@@ -182,5 +187,114 @@ public class PanelController : MonoBehaviour
     {
         isPopupOn = false;
         popup.SetActive(false);
+    }
+
+    public void SetLight(float value)
+    {
+        environmentLight.GetComponent<Light>().intensity = value;
+
+        GameObject[] oxygenParticles = GameObject.FindGameObjectsWithTag("OxygenParticle");
+        GameObject[] carbonDioxideParticles = GameObject.FindGameObjectsWithTag("CarbonDioxideParticle");
+
+        foreach (GameObject oxygenParticle in oxygenParticles) {
+            oxygenParticle.GetComponent<ParticleSystem>().maxParticles = Mathf.RoundToInt(value * 6.7f);
+        }
+
+        foreach (GameObject carbonDioxideParticle in carbonDioxideParticles)
+        {
+            carbonDioxideParticle.GetComponent<ParticleSystem>().maxParticles = Mathf.RoundToInt(value * 6.7f);
+        }
+
+    }
+
+    public void SetTemperature(float value)
+    {
+        camLight.GetComponent<Light>().color = ColorFromTemperature(Mathf.Abs(value));
+
+        GameObject[] waterParticles = GameObject.FindGameObjectsWithTag("WaterParticle");
+
+        foreach (GameObject waterParticle in waterParticles)
+        {
+            waterParticle.GetComponent<ParticleSystem>().maxParticles = Mathf.RoundToInt(value * 8/7400 + 13.02f);
+        }
+    }
+
+    public void SetHumidity(float value)
+    {
+        if(value >= 0.7)
+        {
+            waterTrail.SetActive(true);
+        }
+
+        if (value < 0.7)
+        {
+            waterTrail.SetActive(false);
+        }
+
+        if (value >= 0.35)
+        {
+            waterDrops.SetActive(true);
+        }
+
+        if (value < 0.35)
+        {
+            waterDrops.SetActive(false);
+            waterTrail.SetActive(false);
+        }
+
+        if(value >= 0.7 && value < 0.8)
+        {
+            waterTrail.GetComponent<ParticleSystem>().emissionRate = (value * 1f);
+        }else if (value >= 0.8 && value < 0.9)
+        {
+            waterTrail.GetComponent<ParticleSystem>().emissionRate = (value * 3f);
+        }else if (value >= 0.9 && value < 1)
+        {
+            waterTrail.GetComponent<ParticleSystem>().emissionRate = (value * 5.5f);
+        }
+
+        waterDrops.GetComponent<ParticleSystem>().emissionRate = value * 100f;
+    }
+
+    public static Color ColorFromTemperature(float temperature)
+    {
+        temperature /= 100f;
+
+        var red = 255f;
+        var green = 255f;
+        var blue = 255f;
+
+        if (temperature >= 66f)
+        {
+            red = temperature - 60f;
+            red = 329.698727446f * Mathf.Pow(red, -0.1332047592f);
+        }
+
+        if (temperature < 66f)
+        {
+            green = temperature;
+            green = 99.4708025861f * Mathf.Log(green) - 161.1195681661f;
+        }
+        else
+        {
+            green = temperature - 60f;
+            green = 288.1221695283f * Mathf.Pow(green, -0.0755148492f);
+        }
+
+        if (temperature <= 19f)
+        {
+            blue = 0f;
+        }
+        else if (temperature <= 66f)
+        {
+            blue = temperature - 10f;
+            blue = 138.5177312231f * Mathf.Log(blue) - 305.0447927307f;
+        }
+
+        red /= 255f;
+        green /= 255f;
+        blue /= 255f;
+
+        return new Color(red, green, blue);
     }
 }

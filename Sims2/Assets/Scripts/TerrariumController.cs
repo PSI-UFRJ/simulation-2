@@ -47,6 +47,7 @@ public class TerrariumController : MonoBehaviour
             return;
         }
 
+        lid.SetActive(true);
         lid.GetComponent<Animation>().Play();
     }
 

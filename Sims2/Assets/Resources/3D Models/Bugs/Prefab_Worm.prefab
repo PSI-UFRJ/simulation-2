@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 1457940290383475726}
   - component: {fileID: 9219876885897098823}
   m_Layer: 0
-  m_Name: CarbonDioxideParticle (1)
-  m_TagString: Untagged
+  m_Name: WaterParticle
+  m_TagString: WaterParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -630,7 +630,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 10
+    maxNumParticles: 5
     size3D: 1
     rotation3D: 0
     gravityModifier:
@@ -3809,7 +3809,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minKillSpeed: 0
+    minKillSpeed: 1000
     maxKillSpeed: 10000
     radiusScale: 1
     collidesWith:

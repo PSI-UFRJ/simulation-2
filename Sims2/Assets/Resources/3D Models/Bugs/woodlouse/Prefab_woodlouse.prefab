@@ -8504,7 +8504,7 @@ GameObject:
   - component: {fileID: 2078638170224697690}
   m_Layer: 0
   m_Name: WaterParticle
-  m_TagString: Untagged
+  m_TagString: WaterParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9091,7 +9091,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 10
+    maxNumParticles: 5
     size3D: 1
     rotation3D: 0
     gravityModifier:
@@ -13988,7 +13988,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 10
+    maxNumParticles: 5
     size3D: 1
     rotation3D: 0
     gravityModifier:
