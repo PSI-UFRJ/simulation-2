@@ -11,6 +11,11 @@ public class PanelController : MonoBehaviour
     private List<GameObject> materialPanels;
     private int currentIndex;
 
+    [SerializeField]
+    private List<GameObject> envPanels;
+    private int currentEnvPanel;
+
+
     private TerrariumController terrariumController;
     private Dictionary<int, UnityEngine.UI.Button> selectedBtns;
     private Sprite selectedBtnNormal;
@@ -36,7 +41,8 @@ public class PanelController : MonoBehaviour
     void Start()
     {
         currentIndex = 0;
-        currMode = CONSTRUCT;
+        currentEnvPanel = 0;
+        currMode = OBSERVE;
         terrariumController = GameObject.Find("Terrarium").GetComponent<TerrariumController>();
         panelLayerMapping = new Dictionary<GameObject, int>()
         {
@@ -124,37 +130,62 @@ public class PanelController : MonoBehaviour
 
     public void ChangePanelUp()
     {
-        if ((materialPanels == null) || (currMode != CONSTRUCT))
+        if ((materialPanels == null) || (envPanels == null))
         {
             return;
         }
 
-        if (!WasOptionChosen())
+        if(currMode == CONSTRUCT)
         {
-            CallMissingChoicePopup();
-            return;
+            if (!WasOptionChosen())
+            {
+                CallMissingChoicePopup();
+                return;
+            }
+
+            if (currentIndex + 1 < materialPanels.Count)
+            {
+                materialPanels[currentIndex].SetActive(false);
+                currentIndex++;
+                materialPanels[currentIndex].SetActive(true);
+            }
+        }
+        else if (currMode == OBSERVE)
+        {
+            if (currentEnvPanel + 1 < envPanels.Count)
+            {
+                envPanels[currentEnvPanel].SetActive(false);
+                currentEnvPanel++;
+                envPanels[currentEnvPanel].SetActive(true);
+            }
         }
 
-        if(currentIndex + 1 < materialPanels.Count)
-        {
-            materialPanels[currentIndex].SetActive(false);
-            currentIndex++;
-            materialPanels[currentIndex].SetActive(true);
-        }
     }
 
     public void ChangePanelDown()
     {
-        if ((materialPanels == null) || (currMode != CONSTRUCT))
+        if ((materialPanels == null) || (envPanels == null))
         {
             return;
         }
 
-        if(currentIndex - 1 >= 0)
+        if (currMode == CONSTRUCT)
         {
-            materialPanels[currentIndex].SetActive(false);
-            currentIndex--;
-            materialPanels[currentIndex].SetActive(true);
+            if (currentIndex - 1 >= 0)
+            {
+                materialPanels[currentIndex].SetActive(false);
+                currentIndex--;
+                materialPanels[currentIndex].SetActive(true);
+            }
+        }
+        else if (currMode == OBSERVE)
+        {
+            if (currentEnvPanel - 1 >= 0)
+            {
+                envPanels[currentEnvPanel].SetActive(false);
+                currentEnvPanel--;
+                envPanels[currentEnvPanel].SetActive(true);
+            }
         }
 
     }
