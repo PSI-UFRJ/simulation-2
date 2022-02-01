@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,10 @@ public class PanelController : MonoBehaviour
     [SerializeField] GameObject camLight;
     [SerializeField] GameObject waterDrops;
     [SerializeField] GameObject waterTrail;
+
+    [SerializeField] GameObject LightController;
+    [SerializeField] GameObject TemperatureController;
+    [SerializeField] GameObject HumidityController;
 
     void Start()
     {
@@ -60,6 +65,26 @@ public class PanelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateControls();
+    }
+
+    public void UpdateControls()
+    {
+        float LightControllerValue = LightController.GetComponent<UnityEngine.UI.Slider>().value;
+        UnityEngine.UI.Text LightControllerValueText = LightController.GetComponent<Transform>().Find("ValueText").GetComponent<UnityEngine.UI.Text>();
+
+        LightControllerValueText.text = Math.Round(LightControllerValue * 66.66,2).ToString() + "%";
+
+        float TemperatureControllerValue = TemperatureController.GetComponent<UnityEngine.UI.Slider>().value;
+        UnityEngine.UI.Text TemperatureControllerValueText = TemperatureController.GetComponent<Transform>().Find("ValueText").GetComponent<UnityEngine.UI.Text>();
+
+        TemperatureControllerValueText.text = Math.Round(TemperatureControllerValue * 24/7400 + 48.081, 2).ToString() + "° C";
+
+
+        float HumidityControllerValue = HumidityController.GetComponent<UnityEngine.UI.Slider>().value;
+        UnityEngine.UI.Text HumidityControllerValueText = HumidityController.GetComponent<Transform>().Find("ValueText").GetComponent<UnityEngine.UI.Text>();
+
+        HumidityControllerValueText.text = Math.Round(HumidityControllerValue * 142.8571 - 42.8571, 2).ToString() + "%";
 
     }
 
