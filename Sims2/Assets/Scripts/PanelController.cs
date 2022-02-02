@@ -13,6 +13,7 @@ public class PanelController : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> envPanels;
+    [SerializeField] GameObject environment;
     private int currentEnvPanel;
 
 
@@ -42,14 +43,19 @@ public class PanelController : MonoBehaviour
     {
         currentIndex = 0;
         currentEnvPanel = 0;
-        currMode = OBSERVE;
+        currMode = CONSTRUCT;
         terrariumController = GameObject.Find("Terrarium").GetComponent<TerrariumController>();
         panelLayerMapping = new Dictionary<GameObject, int>()
         {
             {materialPanels[0], TerrariumController.LAYER1},
             {materialPanels[1], TerrariumController.LAYER2},
             {materialPanels[2], TerrariumController.LAYER3},
-            {materialPanels[3], TerrariumController.LAYER4}
+            {materialPanels[3], TerrariumController.LAYER4},
+            {materialPanels[4], TerrariumController.LAYER5},
+            {materialPanels[5], TerrariumController.LAYER6},
+            {materialPanels[6], TerrariumController.LAYER7},
+            {materialPanels[7], TerrariumController.LAYER8},
+            {materialPanels[8], TerrariumController.LAYER9},
         };
 
         selectedBtns = new Dictionary<int, UnityEngine.UI.Button>()
@@ -61,7 +67,8 @@ public class PanelController : MonoBehaviour
             {TerrariumController.LAYER5, null},
             {TerrariumController.LAYER6, null},
             {TerrariumController.LAYER7, null},
-            {TerrariumController.LAYER8, null}
+            {TerrariumController.LAYER8, null},
+            {TerrariumController.LAYER9, null}
         };
 
         isPopupOn = false;
@@ -79,7 +86,7 @@ public class PanelController : MonoBehaviour
         float LightControllerValue = LightController.GetComponent<UnityEngine.UI.Slider>().value;
         UnityEngine.UI.Text LightControllerValueText = LightController.GetComponent<Transform>().Find("ValueText").GetComponent<UnityEngine.UI.Text>();
 
-        LightControllerValueText.text = Math.Round(LightControllerValue * 66.66,2).ToString() + "%";
+        LightControllerValueText.text = Math.Round(LightControllerValue * 66.6666,2).ToString() + "%";
 
         float TemperatureControllerValue = TemperatureController.GetComponent<UnityEngine.UI.Slider>().value;
         UnityEngine.UI.Text TemperatureControllerValueText = TemperatureController.GetComponent<Transform>().Find("ValueText").GetComponent<UnityEngine.UI.Text>();
@@ -96,7 +103,7 @@ public class PanelController : MonoBehaviour
 
     public void CloseTerrarium()
     {
-        if((currentIndex != TerrariumController.LAYER8 - 1) || (materialPanels == null) || (terrariumController == null))
+        if((currentIndex != TerrariumController.LAYER9 - 1) || (materialPanels == null) || (terrariumController == null))
         {
             return;
         }
@@ -104,7 +111,7 @@ public class PanelController : MonoBehaviour
         terrariumController.CloseBowl();
         materialPanels[currentIndex].SetActive(false);
         currMode = OBSERVE;
-        //observingMode.SetActive(true);
+        environment.SetActive(true);
     }
 
     public void OpenTerrarium()
@@ -352,5 +359,52 @@ public class PanelController : MonoBehaviour
         blue /= 255f;
 
         return new Color(red, green, blue);
+    }
+
+    public void setOxygenParticles(Boolean checkbox)
+    {
+
+        GameObject[] oxygenParticles = GameObject.FindGameObjectsWithTag("OxygenParticle");
+
+        foreach (GameObject oxygenParticle in oxygenParticles)
+        {
+            oxygenParticle.gameObject.GetComponent<ParticleSystem>().enableEmission = checkbox;
+        }
+
+        GameObject[] oxygenParticleBugs = GameObject.FindGameObjectsWithTag("OxygenParticleBugs");
+
+        foreach (GameObject oxygenParticleBug in oxygenParticleBugs)
+        {
+            oxygenParticleBug.gameObject.GetComponent<ParticleSystem>().enableEmission = checkbox;
+        }
+    }
+
+    public void setCarbonDioxideParticles(Boolean checkbox)
+    {
+
+        GameObject[] carbonDioxideParticles = GameObject.FindGameObjectsWithTag("CarbonDioxideParticle");
+
+        foreach (GameObject carbonDioxideParticle in carbonDioxideParticles)
+        {
+            carbonDioxideParticle.gameObject.GetComponent<ParticleSystem>().enableEmission = checkbox;
+        }
+
+        GameObject[] carbonDioxideParticleBugs = GameObject.FindGameObjectsWithTag("CarbonDioxideParticleBug");
+
+        foreach (GameObject carbonDioxideParticleBug in carbonDioxideParticleBugs)
+        {
+            carbonDioxideParticleBug.gameObject.GetComponent<ParticleSystem>().enableEmission = checkbox;
+        }
+    }
+
+    public void setWaterParticles(Boolean checkbox)
+    {
+
+        GameObject[] waterParticles = GameObject.FindGameObjectsWithTag("WaterParticle");
+
+        foreach (GameObject waterParticle in waterParticles)
+        {
+            waterParticle.gameObject.GetComponent<ParticleSystem>().enableEmission = checkbox;
+        }
     }
 }

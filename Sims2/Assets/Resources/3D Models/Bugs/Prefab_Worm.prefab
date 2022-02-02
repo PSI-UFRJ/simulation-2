@@ -890,7 +890,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -4942,7 +4942,7 @@ GameObject:
   - component: {fileID: 4455675683834644474}
   m_Layer: 0
   m_Name: CarbonDioxideParticle
-  m_TagString: Untagged
+  m_TagString: CarbonDioxideParticle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5789,7 +5789,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -9922,7 +9922,7 @@ GameObject:
   - component: {fileID: 1589405883834632698}
   m_Layer: 0
   m_Name: OxygenParticle
-  m_TagString: Untagged
+  m_TagString: OxygenParticleBugs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10769,7 +10769,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2

@@ -7,6 +7,9 @@ TagManager:
   - OxygenParticle
   - CarbonDioxideParticle
   - WaterParticle
+  - OxygenParticleBugs
+  - CarbonDioxideParticleBug
+  - WaterParticleBug
   layers:
   - Default
   - TransparentFX
