@@ -30,6 +30,9 @@ public class PanelController : MonoBehaviour
     private const int OBSERVE = 2;
     private int currMode;
 
+    private float currTemperatureFactor;
+    private float currHumidityFactor;
+
     [SerializeField] GameObject environmentLight;
     [SerializeField] GameObject camLight;
     [SerializeField] GameObject waterDrops;
@@ -44,6 +47,10 @@ public class PanelController : MonoBehaviour
         currentIndex = 0;
         currentEnvPanel = 0;
         currMode = CONSTRUCT;
+
+        currTemperatureFactor = TemperatureController.GetComponent<UnityEngine.UI.Slider>().value * 8 / 7400 + 13.02f;
+        currHumidityFactor = HumidityController.GetComponent<UnityEngine.UI.Slider>().value * 14.2857f - 4.2857f;
+
         terrariumController = GameObject.Find("Terrarium").GetComponent<TerrariumController>();
         panelLayerMapping = new Dictionary<GameObject, int>()
         {
@@ -105,6 +112,12 @@ public class PanelController : MonoBehaviour
     {
         if((currentIndex != TerrariumController.LAYER9 - 1) || (materialPanels == null) || (terrariumController == null))
         {
+            return;
+        }
+
+        if (!WasOptionChosen())
+        {
+            CallMissingChoicePopup();
             return;
         }
 
@@ -273,13 +286,8 @@ public class PanelController : MonoBehaviour
     public void SetTemperature(float value)
     {
         camLight.GetComponent<Light>().color = ColorFromTemperature(Mathf.Abs(value));
-
-        GameObject[] waterParticles = GameObject.FindGameObjectsWithTag("WaterParticle");
-
-        foreach (GameObject waterParticle in waterParticles)
-        {
-            waterParticle.GetComponent<ParticleSystem>().maxParticles = Mathf.RoundToInt(value * 8/7400 + 13.02f);
-        }
+        currTemperatureFactor = value * 8 / 7400 + 13.02f;
+        updateWaterParticle();
     }
 
     public void SetHumidity(float value)
@@ -317,8 +325,22 @@ public class PanelController : MonoBehaviour
         }
 
         waterDrops.GetComponent<ParticleSystem>().emissionRate = value * 100f;
+
+        currHumidityFactor = value * 14.2857f - 4.2857f;
+        updateWaterParticle();
     }
 
+
+    public void updateWaterParticle()
+    {
+        GameObject[] waterParticles = GameObject.FindGameObjectsWithTag("WaterParticle");
+
+        foreach (GameObject waterParticle in waterParticles)
+        {
+            float particleNumber = currTemperatureFactor - currHumidityFactor / 2;
+            waterParticle.GetComponent<ParticleSystem>().maxParticles = particleNumber > 2f ? Mathf.RoundToInt(particleNumber) : 2;
+        }
+    }
     public static Color ColorFromTemperature(float temperature)
     {
         temperature /= 100f;
@@ -405,6 +427,22 @@ public class PanelController : MonoBehaviour
         foreach (GameObject waterParticle in waterParticles)
         {
             waterParticle.gameObject.GetComponent<ParticleSystem>().enableEmission = checkbox;
+        }
+    }
+
+
+    public void SetProcess(int index)
+    {
+
+        if (index == 0)
+        {
+            GameObject.Find("Option1Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Evapotranspiração";
+            GameObject.Find("Option2Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Precipitação";
+        }
+        else if (index == 1 || index == 2)
+        {
+            GameObject.Find("Option1Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Respiração";
+            GameObject.Find("Option2Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Fotosíntese";
         }
     }
 }
