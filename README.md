@@ -10,7 +10,7 @@ O modo laboratório permite que você explore como a vida se dá em um ecossiste
 O modo game permite que a partir do terrário construído em modo "Lab" você observe a vida no terrário. Tome cuidado com as suas escolhas, pode custar a vida no ecossistema! Observe as informações apresentadas sobre os itens a serem inseridos no terrário e tente montar o terrário mais próspero!
 
 ## Onde baixar
-Para utilizar a simulação, ela deve ser baixada através do nosso site: [psi-ufrj.github.io](psi-ufrj.github.io/) na seção "Simulações". Este repositório contém somente o código fonte da simulação. É necessário Internet para baixar a simulação mas sua utilização não precisa.
+Para utilizar a simulação, ela deve ser baixada através do nosso site: [psi-ufrj.github.io](google.com) na seção "Simulações". Este repositório contém somente o código fonte da simulação. É necessário Internet para baixar a simulação mas sua utilização não precisa.
 
 ## BNCC
 As simulações do PSI foram realizadas em alinhamento com algumas das habilidades e competências da BNCC. Para o caso da Simulação do Terrário, as habilidades abordadas são:
