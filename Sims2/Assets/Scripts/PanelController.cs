@@ -42,11 +42,23 @@ public class PanelController : MonoBehaviour
     [SerializeField] GameObject TemperatureController;
     [SerializeField] GameObject HumidityController;
 
+    private bool currentDioxideCheckBox = true;
+    private bool currentWaterCheckBox = true;
+    private bool currentOxygenCheckBox = true;
+
+    private string currentCycle;
+    private const string WATER = "WATER";
+    private const string OXYGEN = "OXYGEN";
+    private const string DIOXIDE = "DIOXIDE";
+
+
     void Start()
     {
         currentIndex = 0;
         currentEnvPanel = 0;
-        currMode = CONSTRUCT;
+        currMode = OBSERVE;
+
+        currentCycle = WATER;
 
         currTemperatureFactor = TemperatureController.GetComponent<UnityEngine.UI.Slider>().value * 8 / 7400 + 13.02f;
         currHumidityFactor = HumidityController.GetComponent<UnityEngine.UI.Slider>().value * 14.2857f - 4.2857f;
@@ -177,9 +189,32 @@ public class PanelController : MonoBehaviour
                 envPanels[currentEnvPanel].SetActive(false);
                 currentEnvPanel++;
                 envPanels[currentEnvPanel].SetActive(true);
+
+                if(currentEnvPanel == 1)
+                {
+                    DisableParticles();
+
+                    SetTemperature(-6500);
+                    SetHumidity(0.0f);
+                    SetLight(0.75f);
+
+                }
             }
         }
 
+    }
+
+    public void DisableParticles()
+    {
+        bool temp = currentDioxideCheckBox;
+        setCarbonDioxideParticles(false);
+        currentDioxideCheckBox = temp;
+        temp = currentOxygenCheckBox;
+        setOxygenParticles(false);
+        currentOxygenCheckBox = temp;
+        temp = currentWaterCheckBox;
+        setWaterParticles(false);
+        currentWaterCheckBox = temp;
     }
 
     public void ChangePanelDown()
@@ -205,6 +240,17 @@ public class PanelController : MonoBehaviour
                 envPanels[currentEnvPanel].SetActive(false);
                 currentEnvPanel--;
                 envPanels[currentEnvPanel].SetActive(true);
+
+                if (currentEnvPanel == 0)
+                {
+                    setCarbonDioxideParticles(currentDioxideCheckBox);
+                    setOxygenParticles(currentOxygenCheckBox);
+                    setWaterParticles(currentWaterCheckBox);
+
+                    SetTemperature(TemperatureController.GetComponent<UnityEngine.UI.Slider>().value);
+                    SetHumidity(HumidityController.GetComponent<UnityEngine.UI.Slider>().value);
+                    SetLight(LightController.GetComponent<UnityEngine.UI.Slider>().value);
+                }
             }
         }
 
@@ -386,6 +432,8 @@ public class PanelController : MonoBehaviour
     public void setOxygenParticles(Boolean checkbox)
     {
 
+        currentOxygenCheckBox = checkbox;
+
         GameObject[] oxygenParticles = GameObject.FindGameObjectsWithTag("OxygenParticle");
 
         foreach (GameObject oxygenParticle in oxygenParticles)
@@ -403,6 +451,8 @@ public class PanelController : MonoBehaviour
 
     public void setCarbonDioxideParticles(Boolean checkbox)
     {
+
+        currentDioxideCheckBox = checkbox;
 
         GameObject[] carbonDioxideParticles = GameObject.FindGameObjectsWithTag("CarbonDioxideParticle");
 
@@ -422,6 +472,8 @@ public class PanelController : MonoBehaviour
     public void setWaterParticles(Boolean checkbox)
     {
 
+        currentWaterCheckBox = checkbox;
+
         GameObject[] waterParticles = GameObject.FindGameObjectsWithTag("WaterParticle");
 
         foreach (GameObject waterParticle in waterParticles)
@@ -438,11 +490,267 @@ public class PanelController : MonoBehaviour
         {
             GameObject.Find("Option1Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Evapotranspiração";
             GameObject.Find("Option2Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Precipitação";
+
+            GameObject.Find("Option1Checkbox").GetComponentInChildren<UnityEngine.UI.Toggle>().isOn = false;
+            GameObject.Find("Option2Checkbox").GetComponentInChildren<UnityEngine.UI.Toggle>().isOn = false;
+
+            currentCycle = WATER;
+
+            DisableParticles();
+
         }
         else if (index == 1 || index == 2)
         {
             GameObject.Find("Option1Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Respiração";
             GameObject.Find("Option2Checkbox").GetComponentInChildren<UnityEngine.UI.Text>().text = "Fotosíntese";
+
+            GameObject.Find("Option1Checkbox").GetComponentInChildren<UnityEngine.UI.Toggle>().isOn = false;
+            GameObject.Find("Option2Checkbox").GetComponentInChildren<UnityEngine.UI.Toggle>().isOn = false;
+
+            DisableParticles();
+
+            if (index == 1)
+            {
+                currentCycle = OXYGEN;
+            }
+            else
+            {
+                currentCycle = DIOXIDE;
+            }
+        }
+    }
+
+    public void SetProcess1(bool checkbox)
+    {
+
+        if(currentCycle == WATER) //Evapotraspiração
+        {
+            bool temp = currentWaterCheckBox;
+            setWaterParticles(checkbox);
+            currentWaterCheckBox = temp;
+        }
+
+        if(currentCycle == OXYGEN) //Oxygen na respiração
+        {
+            //bugs
+
+            int allChildren = GameObject.Find("BugLayer1").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("BugLayer1").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("BugLayer1").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("OxygenParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            allChildren = GameObject.Find("BugLayer2").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("BugLayer2").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("BugLayer2").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("OxygenParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            //Vegetation
+
+            GameObject[] oxygenParticles = GameObject.FindGameObjectsWithTag("OxygenParticle-Breathing");
+
+            foreach (GameObject oxygenParticle in oxygenParticles)
+            {
+                ParticleSystem.EmissionModule emission = oxygenParticle.gameObject.GetComponent<ParticleSystem>().emission;
+                emission.enabled = checkbox;
+            }
+        }
+
+        if (currentCycle == DIOXIDE) //Dioxide na respiração
+        {
+            //bugs
+
+            int allChildren = GameObject.Find("BugLayer1").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("BugLayer1").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("BugLayer1").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("CarbonDioxideParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            allChildren = GameObject.Find("BugLayer2").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("BugLayer2").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("BugLayer2").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("CarbonDioxideParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            //Vegetation
+
+            GameObject[] oxygenParticles = GameObject.FindGameObjectsWithTag("CarbonDioxideParticle-Breathing");
+
+            foreach (GameObject oxygenParticle in oxygenParticles)
+            {
+                ParticleSystem.EmissionModule emission = oxygenParticle.gameObject.GetComponent<ParticleSystem>().emission;
+                emission.enabled = checkbox;
+            }
+        }
+    }
+
+    public void SetProcess2(bool checkbox)
+    {
+
+        if (currentCycle == WATER) //Precipitação
+        {
+            if(checkbox == true)
+            {
+                SetHumidity(1f);
+            }
+            else
+            { 
+                SetHumidity(0f);
+            }
+        }
+
+        if (currentCycle == OXYGEN) //Oxygen na fotosíntese
+        {
+
+            int allChildren = GameObject.Find("VegetationLayer1").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+               Transform child = GameObject.Find("VegetationLayer1").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("VegetationLayer1").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("OxygenParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            allChildren = GameObject.Find("VegetationLayer2").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("VegetationLayer2").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("VegetationLayer2").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("OxygenParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            allChildren = GameObject.Find("VegetationLayer3").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("VegetationLayer3").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("VegetationLayer3").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("OxygenParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+        }
+
+        if (currentCycle == DIOXIDE) //Dioxide na fotosíntese
+        {
+            int allChildren = GameObject.Find("VegetationLayer1").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("VegetationLayer1").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("VegetationLayer1").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("CarbonDioxideParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            allChildren = GameObject.Find("VegetationLayer2").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("VegetationLayer2").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("VegetationLayer2").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("CarbonDioxideParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
+
+            allChildren = GameObject.Find("VegetationLayer3").GetComponent<Transform>().childCount;
+
+            for (int i = 0; i < allChildren; i++)
+            {
+                Transform child = GameObject.Find("VegetationLayer3").GetComponent<Transform>().GetChild(i);
+                if (child.gameObject.activeSelf)
+                {
+                    for (int j = 0; j < child.childCount; j++)
+                    {
+                        Transform allGrandchild = GameObject.Find("VegetationLayer3").GetComponent<Transform>().GetChild(i).GetChild(j);
+                        ParticleSystem.EmissionModule emission = allGrandchild.Find("CarbonDioxideParticle").gameObject.GetComponent<ParticleSystem>().emission;
+                        emission.enabled = checkbox;
+                    }
+                }
+
+            }
         }
     }
 }
