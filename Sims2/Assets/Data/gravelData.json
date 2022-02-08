@@ -1,0 +1,13 @@
+[
+	{
+		"id": "gravel",
+		"name": "gravel",
+		"type": "gravel",
+		"curiosity": [
+						"O cascalho é base do terrário. Ele sustenta toda a estrutura.",
+						"O cascalho irá resistir à compactação e servirá de suporte para as camadas acima.",
+						"A camada de cascalho é fundalmental para drenar o excesso de água do terrário.",
+						"Sem o cascalho o solo ficará encharcado e as raízes irão apodrecer."
+					 ]
+	},
+]

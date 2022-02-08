@@ -1,0 +1,64 @@
+[
+	{
+		"id": "ant",
+		"name": "ant",
+		"type": "animal",
+		"curiosity": [
+						"As formigas vivem em grandes colônias que podem se formar sob o solo, no interior de troncos nas parede de azulejo, entre os tijolos de uma casa, etc.", 
+						"Registros fósseis indicam que as formigas surgiram por volta de 80 milhões de anos atrás.",
+						"As formigas estão presentes em quase todas as regiões. Só não encontramos formigas na Antártida e no Pólo Norte.",
+						"Assim como os outros insetos, as formigas possuem um exoesqueleto impermeável, três pares de pernas e o corpo dividido em três partes: cabeça, tórax e abdome.",
+						"Em um formigueiro, podemos encontrar várias fêmeas estéreis, chamadas de operárias, e, geralmente, uma única fértil, a rainha.",
+						"Os ovos da rainha que foram fecundados dão origem a fêmeas. Aqueles que não foram fecundados gerarão machos.",
+						"As formigas passam pela metamorfose – uma mudança completa na forma do corpo – que tem quatro etapas: ovo, larva, pupa e adulta.",
+						"A alimentação fornecida às larvas determina se ela se transformará em rainha ou operária.",
+						"As formigas são insetos sociais e apresentam uma clara divisão das tarefas necessárias à manutenção das colônias.",
+						"A construção dos formigueiros revolve e oxigena o solo, melhorando as condições da planta.",
+						"As formigas podem oferecer proteção para as plantas contra o ataque de outros herbívoros mais destrutivos.",
+						"Cientistas calculam que existam de 10 quatrilhões a 1 septilhão (um milhão de quatrilhões) delas no planeta. É o inseto mais numeroso do mundo.",
+						"As formigas não têm pulmões. Elas respiram o oxigênio através de uma série de buracos localizados dos lados de seus corpos."
+					 ] 
+	},
+	{
+		"id": "spider",
+		"name": "spider",
+		"type": "animal",
+		"curiosity": [
+						"O veneno das viúvas negras é 15 vezes mais potente do que o de uma cascavel.",
+						"Comparando grama a grama, as teias de aranha são cinco vezes mais fortes do que o aço.",
+						"A teia é composta por uma proteína chamada fibroína e pode ser cinco vezes mais forte que um fio de aço de mesma espessura.",
+						"As viúvas negras são famosas por devorar os machos depois de se acasalarem com eles.",
+						"Algumas aranhas performam danças como rituais de acasalamento.",
+						"Algumas espécies de aranhas, como a aranha saltadora, podem enxergar em outros espectros de luz como a luz UVA e UVB."
+					 ] 
+	},
+	{
+		"id": "woodlouse",
+		"name": "woodlouse",
+		"type": "animal",
+		"curiosity": [
+						"O tatuzinho de jardim costuma viver em lugares úmidos, entretanto, ele não consegue viver na água.",
+						"Os tatus de jardim são crustáceos e não insetos.",
+						"O tatuzinho de jardim sempre que ameaçado se enrola para ficar protegido dentro de sua camada dura de pele.",
+						"Os tatuzinhos de jardimcomem qualquer tipo de folha, por este motivo eles são uma preocupação para quem cultiva alimentos em sua horta ou mantém um jardim.",
+						"A maioria das espécies de tatuzinho são noturnas",
+						"Os tatuzinhos de jardim são os únicos crustáceos adaptados à vida na terra.",
+						"As fêmeas de tatuzinhos de jardim possuem bolsas similares ao de cangurus para carregar os ovos dos filhotes na parte inferior do corpo.",
+						"Os tatuzinhos de jardim possuem 14 pernas. Eles devem gastar uma nota com sapatos!",
+						"Os tatuzinhos de jardim se enrolam numa bola também quando precisam gerar umidade para respirar melhor."
+					 ] 
+	},
+	{
+		"id": "worm",
+		"name": "worm",
+		"type": "animal",
+		"curiosity": [
+						"As minhocas são decompositores, importantes para o solo, que se alimentam tanto de vegetais quanto de restos de outros animais.",
+						"As minhocas cavam extensos túneis, trazendo  para a superfície as camadas mais profundas do solo. Isso renova os nutrientes do solo superficial, que são importantes para as plantas.",
+						"Ao se remexerem e escavarem o solo, as minhocas ingerem porções de terra, e, assim, decompõem e transformam resíduos orgânicos em húmus: um excelente adubo para as plantas. Além disso, arejam a terra facilitando a penetração de água e de raízes.",
+						"Solo com muitas minhocas sinaliza solo fértil.",
+						"Por possuirem os dois sexos (masculino e feminino), as minhocas são hermafroditas. Mas, para que se reproduzam, é necessário que duas delas realizem uma dupla fecundação.",
+						"As munhocas podem ter vários corações, podendo ter entre dois e quinze pares."
+					 ] 
+	}
+]

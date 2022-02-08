@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
+using System.Linq;
 
 public class PanelController : MonoBehaviour
 {
@@ -51,12 +53,19 @@ public class PanelController : MonoBehaviour
     private const string OXYGEN = "OXYGEN";
     private const string DIOXIDE = "DIOXIDE";
 
+    [SerializeField]
+    private List<TextAsset> curiosityFiles;
+    [SerializeField]
+    private UnityEngine.UI.Text infoTextbox;
+    private List<ObjectData> objectsData;
+    private Dictionary<int, string> selectedBtnsCuriosity;
+
 
     void Start()
     {
         currentIndex = 0;
         currentEnvPanel = 0;
-        currMode = OBSERVE;
+        currMode = CONSTRUCT;
 
         currentCycle = WATER;
 
@@ -90,7 +99,22 @@ public class PanelController : MonoBehaviour
             {TerrariumController.LAYER9, null}
         };
 
+        selectedBtnsCuriosity = new Dictionary<int,string>()
+        {
+            {TerrariumController.LAYER1, ""},
+            {TerrariumController.LAYER2, ""},
+            {TerrariumController.LAYER3, ""},
+            {TerrariumController.LAYER4, ""},
+            {TerrariumController.LAYER5, ""},
+            {TerrariumController.LAYER6, ""},
+            {TerrariumController.LAYER7, ""},
+            {TerrariumController.LAYER8, ""},
+            {TerrariumController.LAYER9, ""}
+        };
+
         isPopupOn = false;
+
+        objectsData = LoadObjectsData();
 
     }
 
@@ -139,11 +163,6 @@ public class PanelController : MonoBehaviour
         environment.SetActive(true);
     }
 
-    public void OpenTerrarium()
-    {
-        
-    }
-
     public void CallMissingChoicePopup()
     {
         if (isPopupOn)
@@ -180,6 +199,7 @@ public class PanelController : MonoBehaviour
                 materialPanels[currentIndex].SetActive(false);
                 currentIndex++;
                 materialPanels[currentIndex].SetActive(true);
+                infoTextbox.text = selectedBtnsCuriosity[currentIndex + 1];
             }
         }
         else if (currMode == OBSERVE)
@@ -231,6 +251,7 @@ public class PanelController : MonoBehaviour
                 materialPanels[currentIndex].SetActive(false);
                 currentIndex--;
                 materialPanels[currentIndex].SetActive(true);
+                infoTextbox.text = selectedBtnsCuriosity[currentIndex + 1];
             }
         }
         else if (currMode == OBSERVE)
@@ -290,6 +311,40 @@ public class PanelController : MonoBehaviour
         string selectedBtnImg = selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite.name.Replace("Normal", "Selected");
         selectedBtnNormal = selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite;
         selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load("UI Components/" + selectedBtnImg, typeof(Sprite)) as Sprite;        
+    }
+
+    public void SetInfoInDataPanel(string id)
+    {
+        List<ObjectData> filteredObjects = objectsData.Where<ObjectData>(x => x.GetId() == id).ToList<ObjectData>();
+
+        if((filteredObjects == null) || (filteredObjects.Count == 0))
+        {
+            return;
+        }
+
+        ObjectData obj = filteredObjects[0];
+        List<string> curiosities = obj.GetCuriosity();
+        string chosenCuriosity = GetRandomElements<string>(curiosities, 1).First<string>();
+        infoTextbox.text = chosenCuriosity;
+        selectedBtnsCuriosity[currentIndex + 1] = chosenCuriosity;
+    }
+
+    public List<T> GetRandomElements<T>(IEnumerable<T> list, int elementsCount)
+    {
+        return list.OrderBy(arg => Guid.NewGuid()).Take(elementsCount).ToList();
+    }
+
+    public List<ObjectData> LoadObjectsData()
+    {
+        List<ObjectData>  objectsData_ = new List<ObjectData>();
+
+
+        foreach (TextAsset file in curiosityFiles)
+        {
+            objectsData_.AddRange(JsonConvert.DeserializeObject<List<ObjectData>>(file.text));
+        }
+
+        return objectsData_;
     }
 
     public void SetPopup(GameObject popup, bool isActive, string message)

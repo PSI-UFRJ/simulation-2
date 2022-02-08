@@ -1,0 +1,57 @@
+[
+	{
+		"id": "plant1",
+		"name": "musgo",
+		"type": "plant",
+		"curiosity": ["Esta planta é semelhante aos musgos: gosta de uma sombra e alta umidade!"] 
+	},
+	
+	{
+		"id": "plant2",
+		"name": "dwarf yucca",
+		"type": "plant",
+		"curiosity": ["Essa planta gosta de um clime bem seco, quente e bastante luz, tipo deserto!"] 
+	},
+	
+	{
+		"id": "plant3",
+		"name": "baby kale",
+		"type": "plant",
+		"curiosity": ["Diferente das outras, essa planta gosta de um friozinho com média umidade e pouca luz!"] 
+	},
+	
+	{
+		"id": "plant4",
+		"name": "planta confete",
+		"type": "plant",
+		"curiosity": ["Para manter-se bem, essa planta precisa de calor e umidade, mas pouca luz!"] 
+	},
+	
+	{
+		"id": "plant5",
+		"name": "samambaia de botão de limão",
+		"type": "plant",
+		"curiosity": ["Esta planta gosta de tudo alto: luz, umidade e temperatura!"] 
+	},
+	
+	{
+		"id": "plant6",
+		"name": "alecrim",
+		"type": "plant",
+		"curiosity": ["Com essa planta você pode abusar da luz, mas umidade mediana"] 
+	},
+	
+	{
+		"id": "plant7",
+		"name": "hera inglesa",
+		"type": "plant",
+		"curiosity": ["Apesar de preferir o clima mais quentinho e umido, essa não é muito fã de luz"] 
+	},
+	
+	{
+		"id": "plant8",
+		"type": "plant",
+		"name": "Orquídea em miniatura phalaenopsis",
+		"curiosity": ["Essa linda flor tem preferências opostas: pouca luz e muita umidade"] 
+	}
+]
