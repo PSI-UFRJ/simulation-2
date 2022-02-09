@@ -20,8 +20,8 @@ public class PanelController : MonoBehaviour
 
 
     private TerrariumController terrariumController;
+    private Dictionary<int, Sprite> selectedBtnNormalDict;
     private Dictionary<int, UnityEngine.UI.Button> selectedBtns;
-    private Sprite selectedBtnNormal;
     private Dictionary<GameObject, int> panelLayerMapping;
 
     private bool isPopupOn;
@@ -110,6 +110,19 @@ public class PanelController : MonoBehaviour
             {TerrariumController.LAYER7, ""},
             {TerrariumController.LAYER8, ""},
             {TerrariumController.LAYER9, ""}
+        };
+
+        selectedBtnNormalDict = new Dictionary<int, Sprite>()
+        {
+            {TerrariumController.LAYER1, null},
+            {TerrariumController.LAYER2, null},
+            {TerrariumController.LAYER3, null},
+            {TerrariumController.LAYER4, null},
+            {TerrariumController.LAYER5, null},
+            {TerrariumController.LAYER6, null},
+            {TerrariumController.LAYER7, null},
+            {TerrariumController.LAYER8, null},
+            {TerrariumController.LAYER9, null}
         };
 
         isPopupOn = false;
@@ -301,15 +314,15 @@ public class PanelController : MonoBehaviour
 
     public void SelectButton(UnityEngine.UI.Button btn)
     {
-
         if(selectedBtns[currentIndex + 1] != null)
         {
-            selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite = selectedBtnNormal;
+            selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite = selectedBtnNormalDict[currentIndex + 1];
         }
 
         selectedBtns[currentIndex + 1] = btn;
         string selectedBtnImg = selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite.name.Replace("Normal", "Selected");
-        selectedBtnNormal = selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite;
+        selectedBtnNormalDict[currentIndex + 1] = selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite;
+
         selectedBtns[currentIndex + 1].GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load("UI Components/" + selectedBtnImg, typeof(Sprite)) as Sprite;        
     }
 
