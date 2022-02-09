@@ -1,0 +1,29 @@
+[
+	{
+		"id": "grass1",
+		"name": "grama com folhas",
+		"type": "plant",
+		"curiosity": ["Grama decorativa de outono com altura média e folhas caídas."] 
+	},
+	
+	{
+		"id": "grass2",
+		"name": "areia com planta",
+		"type": "plant",
+		"curiosity": ["Areia decorativa com algumas pequenas plantas e pedras."] 
+	},
+	
+	{
+		"id": "grass3",
+		"name": "grama de verão",
+		"type": "plant",
+		"curiosity": ["Grama decorativa de verão com folhagem seca caída."] 
+	},
+	
+	{
+		"id": "grass4",
+		"name": "grama com pedras",
+		"type": "plant",
+		"curiosity": ["Grama decorativa com pedras, folhagem e galhos."] 
+	},
+]

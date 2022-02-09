@@ -3,34 +3,34 @@
 		"id": "soil1",
 		"name": "humíferoepedregoso",
 		"type": "soil",
-		"curiosity": ["Este solo é parecido com o Terra 2, porém possui menos pedras e mais nutrientes"] 
+		"curiosity": ["Este solo é parecido com o Terra 2, porém possui menos pedras e mais nutrientes."] 
 	},
 	
 	{
 		"id": "soil2",
 		"name": "pedregoso",
 		"type": "soil",
-		"curiosity": ["Este solo contém bastante pedras, o que torna difícil o plantio nele, além de não ser tão impermeável"] 
+		"curiosity": ["Este solo contém bastante pedras, o que torna difícil o plantio nele, além de não ser tão impermeável."] 
 	},
 	
 	{
 		"id": "soil3",
 		"name": "humífero",
 		"type": "soil",
-		"curiosity": ["Este solo é o melhor para o plantio, pois possui uma alta taxa de nutrientes"] 
+		"curiosity": ["Este solo é o melhor para o plantio pois possui uma alta taxa de nutrientes."] 
 	},	
 	
 	{
 		"id": "soil4",
 		"name": "latossólico",
 		"type": "soil",
-		"curiosity": ["Este solo impede que a água passe e possui baixa fertilidade natural"] 
+		"curiosity": ["Este solo impede que a água passe e possui baixa fertilidade natural."] 
 	},		
 
 	{
 		"id": "soil5",
 		"name": "argiloso",
 		"type": "soil",
-		"curiosity": ["Este solo consegue reter bastante água, tornando-o instável para o plantio"] 
+		"curiosity": ["Este solo consegue reter bastante água, tornando-o instável para o plantio."] 
 	}
 ]

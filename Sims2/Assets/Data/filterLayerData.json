@@ -3,20 +3,20 @@
 		"id": "sand",
 		"name": "areia",
 		"type": "filterLayer",
-		"curiosity": ["Útil para a retenção de água e decorativo"] 
+		"curiosity": ["A areia é útil para a retenção de água e decorativo."] 
 	},
 	
 	{
 		"id": "charcoal",
 		"name": "carvão",
 		"type": "filterLayer",
-		"curiosity": ["Utilizado para purificar a água que vem das camadas superiores"] 
+		"curiosity": ["O carvão é utilizado para purificar a água que vem das camadas superiores."] 
 	},
 	
 	{
 		"id": "moss",
 		"name": "musgo",
 		"type": "filterLayer",
-		"curiosity": ["Serve como uma retenção de água e também, dependendo do caso, para filtragem antibacteriana"] 
+		"curiosity": ["O musgo serve como uma retenção de água e também, dependendo do caso, para filtragem antibacteriana."] 
 	}
 ]

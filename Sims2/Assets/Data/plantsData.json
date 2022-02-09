@@ -10,7 +10,7 @@
 		"id": "plant2",
 		"name": "dwarf yucca",
 		"type": "plant",
-		"curiosity": ["Essa planta gosta de um clime bem seco, quente e bastante luz, tipo deserto!"] 
+		"curiosity": ["Esta planta gosta de um clima bem seco, quente e bastante luz, tipo deserto!"] 
 	},
 	
 	{
@@ -38,20 +38,20 @@
 		"id": "plant6",
 		"name": "alecrim",
 		"type": "plant",
-		"curiosity": ["Com essa planta você pode abusar da luz, mas umidade mediana"] 
+		"curiosity": ["Com essa planta você pode abusar da luz, mas umidade mediana."] 
 	},
 	
 	{
 		"id": "plant7",
 		"name": "hera inglesa",
 		"type": "plant",
-		"curiosity": ["Apesar de preferir o clima mais quentinho e umido, essa não é muito fã de luz"] 
+		"curiosity": ["Apesar de preferir um clima mais quentinho e úmido, essa não é muito fã de luz."] 
 	},
 	
 	{
 		"id": "plant8",
 		"type": "plant",
 		"name": "Orquídea em miniatura phalaenopsis",
-		"curiosity": ["Essa linda flor tem preferências opostas: pouca luz e muita umidade"] 
+		"curiosity": ["Essa linda flor tem preferências por pouca luz e muita umidade."] 
 	}
 ]
