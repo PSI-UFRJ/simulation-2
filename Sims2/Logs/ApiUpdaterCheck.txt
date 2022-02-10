@@ -18,3 +18,33 @@ C# parse time         : 550ms
 candidates check time : 142ms
 console write time    : 1ms
 
+[api-updater (non-obsolete-error-filter)] 09/02/2022 19:23:37 : Starting D:/Arquivos de Programas/Unity/2020.3.15f2/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 2655,6196ms
+moved types parse time: 185ms
+candidates parse time : 2ms
+C# parse time         : 2175ms
+candidates check time : 118ms
+console write time    : 5ms
+
+[api-updater (non-obsolete-error-filter)] 09/02/2022 19:24:12 : Starting D:/Arquivos de Programas/Unity/2020.3.15f2/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 881,0993ms
+moved types parse time: 118ms
+candidates parse time : 2ms
+C# parse time         : 404ms
+candidates check time : 79ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 09/02/2022 19:24:24 : Starting D:/Arquivos de Programas/Unity/2020.3.15f2/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 521,0951ms
+moved types parse time: 88ms
+candidates parse time : 20ms
+C# parse time         : 360ms
+candidates check time : 64ms
+console write time    : 1ms
+
