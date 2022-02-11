@@ -1,13 +1,15 @@
 # Simulação do Terrário
 
-> A Simulação de Terrário é uma simulação computacional cujo objetivo é que o aluno possa explorar a vida num ecossistema fechado representado pelo terrário e aprender de forma mais didática como funciona alguns dos ciclos biogeoquímicos. As simulações do PSI possuem 2 modos: o modo "Lab" e o modo "Jogo".
+> A Simulação de Terrário é uma simulação computacional cujo objetivo é que o aluno possa explorar a vida num ecossistema fechado representado pelo terrário e aprender de forma mais didática como funciona alguns dos ciclos biogeoquímicos. Esta simulação possui apenas o modo "Lab".
 
 ## Modos
 ### Lab
 O modo laboratório permite que você explore como a vida se dá em um ecossistema fechado. Monte o seu próprio terrário e observe como a temperatura, umidade e luz influenciam nos ciclos biogeoquímicos!
 
+<!--
 ### Jogo
-O modo game permite que a partir do terrário construído em modo "Lab" você observe a vida no terrário. Tome cuidado com as suas escolhas, pode custar a vida no ecossistema! Observe as informações apresentadas sobre os itens a serem inseridos no terrário e tente montar o terrário mais próspero!
+O modo game permite que a partir do terrário construído em modo "Lab" você observe a vida no terrário. Tome cuidado com as suas escolhas, pode custar a vida no ecossistema! Observe as informações apresentadas sobre os itens a serem inseridos no terrário e tente montar o terrário mais próspero
+-->
 
 ## Onde baixar
 Para utilizar a simulação, ela deve ser baixada através do nosso site: [psi-ufrj.github.io](https://psi-ufrj.github.io/) na seção "Simulações". Este repositório contém somente o código fonte da simulação. É necessário Internet para baixar a simulação mas sua utilização não precisa.
