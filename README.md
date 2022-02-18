@@ -1,6 +1,6 @@
-# Simulação do Terrário
+# Simulação "Explorando o terrário"
 
-> A Simulação de Terrário é uma simulação computacional cujo objetivo é que o aluno possa explorar a vida num ecossistema fechado representado pelo terrário e aprender de forma mais didática como funciona alguns dos ciclos biogeoquímicos. Esta simulação possui apenas o modo "Lab".
+> A Simulação "Explorando o terrário" é uma simulação computacional cujo objetivo é que o aluno possa explorar a vida num ecossistema fechado representado pelo terrário e aprender de forma mais didática como funciona alguns dos ciclos biogeoquímicos. Esta simulação possui apenas o modo "Lab".
 
 ## Modos
 ### Lab
