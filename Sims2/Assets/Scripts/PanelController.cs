@@ -60,6 +60,8 @@ public class PanelController : MonoBehaviour
     private List<ObjectData> objectsData;
     private Dictionary<int, string> selectedBtnsCuriosity;
 
+    float timer = 0.0f;
+
 
     void Start()
     {
@@ -134,7 +136,22 @@ public class PanelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TickTimer();
         UpdateControls();
+    }
+
+    public void TickTimer()
+    {
+
+
+        timer += Time.deltaTime;
+        int seconds = (int)timer % 120;
+
+        if (currMode == OBSERVE && (10 - seconds <= 0))
+        {
+            timer = 0.0f;
+            SetInfoInDataPanel("infos");
+        }
     }
 
     public void UpdateControls()
@@ -170,6 +187,7 @@ public class PanelController : MonoBehaviour
             return;
         }
 
+        infoTextbox.text = "";
         terrariumController.CloseBowl();
         materialPanels[currentIndex].SetActive(false);
         currMode = OBSERVE;
